@@ -1,0 +1,50 @@
+[project]
+name = "aoc"
+description = "Advent of code 2025 (https://adventofcode.com/2025) puzzles."
+version = "2025.11.29"
+authors = [
+  { name="Ben Hattem", email="benghattem@gmail.com" },
+]
+requires-python = ">=3.13"
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Private :: Do Not Upload",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+]
+
+[project.optional-dependencies]
+dev = [
+    "line_profiler",
+    "pyinstrument",
+    "pylint",
+    "pytest",
+    "snakeviz",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.uv]
+link-mode = "copy"
+
+[tool.uv.pip]
+annotation-style = "line"
+universal = true
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+
+[tool.pylint.messages_control]
+max-line-length = 120
+disable = [
+]
+
+[tool.pylint.typecheck]
+generated-members = [
+]
