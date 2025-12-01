@@ -5,7 +5,7 @@ from dataclasses import dataclass
 
 import pytest
 
-from aoc_utils import PuzzleInputType, puzzle_input_as_list
+from aoc import PuzzleInputType, puzzle_input_as_list
 
 START_POSITION = 50
 DIAL_SIZE = 100
