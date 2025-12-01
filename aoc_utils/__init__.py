@@ -2,17 +2,18 @@
 
 import traceback
 from pathlib import Path
-from typing import Any, Generator
+
+type PuzzleInputType = list[str]
 
 
 class InputFileNotFoundException(Exception):
     """Input file not found"""
 
 
-def read_input_file_as_str() -> str:
-    """Get the content of the puzzle input file.
+def get_puzzle_input_filename() -> Path:
+    """Generate a filename where the puzzle input is expected.
 
-    The method searching for a name on the caller stack assuming:
+    The method searches for a name on the caller stack assuming:
      - calling script is in a subdir of the parent of this file
      - input file is in the folder '../data' relative to calling script
      - input file has the same (base)name as the caller but with extension '.txt'
@@ -29,12 +30,12 @@ def read_input_file_as_str() -> str:
         if str(filename).startswith(aoc_base_dir):
             input_file = filename.parent.parent / "data" / filename.with_suffix(".txt").name
             if input_file.exists():
-                return input_file.read_text(encoding="utf-8")
+                return input_file
     raise InputFileNotFoundException("could not find name of puzzle input file")
 
 
-def read_input_file_as_lines(ignore_empty_lines: bool = True) -> Generator[str]:
-    """Read puzzle input file line by line and (optionally) suppress empty lines.
+def puzzle_input_as_list(ignore_empty_lines: bool = True) -> PuzzleInputType:
+    """Read puzzle input file (optionally) suppress empty lines and return as list.
 
     Args:
         ignore_empty_lines (bool, optional): suppress empty lines (default: True).
@@ -42,13 +43,11 @@ def read_input_file_as_lines(ignore_empty_lines: bool = True) -> Generator[str]:
     Yields:
         Generator[str]: line of the puzzle input file
     """
-    for line in read_input_file_as_str().splitlines():
-        line = line.strip()
-        if ignore_empty_lines and not line:
-            continue
-        yield line
-
-
-def list_to_generator(input_list: list[Any]) -> Generator[Any]:
-    """Convert a list to a generator"""
-    yield from input_list
+    puzzle_input = []
+    with open(get_puzzle_input_filename(), encoding="utf-8") as fh_in:
+        for line in fh_in:
+            line = line.strip()
+            if ignore_empty_lines and not line:
+                continue
+            puzzle_input.append(line)
+    return puzzle_input

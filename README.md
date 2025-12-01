@@ -1,4 +1,4 @@
-# Advent of code 2025 (https://adventofcode.com/2025/)
+# [Advent of code 2025](https://adventofcode.com/2025/)
 
 Solutions for the [Advent of Code 2025](https://adventofcode.com/2025/) puzzles.
 
@@ -13,6 +13,8 @@ Code is spell checked using the [Code Spell Checker](https://marketplace.visuals
   - [cProfile](#cprofile)
 
 ## 2025
+
+- [Day 1: Secret Entrance](./2025/src/aoc2025_day01_secret_entrance.py)
 
 ## Profiling
 
