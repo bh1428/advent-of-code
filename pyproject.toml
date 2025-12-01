@@ -1,5 +1,5 @@
 [project]
-name = "aoc_utils"
+name = "aoc"
 description = "Advent of code (https://adventofcode.com/) puzzles."
 version = "2025.12.1"
 authors = [

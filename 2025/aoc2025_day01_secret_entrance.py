@@ -96,17 +96,14 @@ def part_2(rotations: PuzzleInputType) -> int:
     landing_on_or_passing_zero = 0
     for rotation in rotations:
         clicks = parse_rotation(rotation)
-        new_virtual_position = position + clicks
-        landing_on_or_passing_zero += abs(new_virtual_position // DIAL_SIZE)
+        rounds, new_position = divmod(position + clicks, DIAL_SIZE)
+        landing_on_or_passing_zero += abs(rounds)
         if clicks < 0:
-            # corrections for zero when dialing left
             if position == 0:
-                # starting from zero: starting from means no initial pass -> subtract one
                 landing_on_or_passing_zero -= 1
-            if (new_virtual_position % 100) == 0:
-                # landing on zero: abs(-100 // 100) = 1, but we need 2 -> add one
+            if new_position == 0:
                 landing_on_or_passing_zero += 1
-        position = new_virtual_position % DIAL_SIZE
+        position = new_position
     return landing_on_or_passing_zero
 
 
