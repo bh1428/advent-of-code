@@ -12,7 +12,7 @@ platformdirs==4.5.0       # via pylint
 pluggy==1.6.0             # via pytest
 pygments==2.19.2          # via pytest
 pyinstrument==5.1.1       # via aoc (pyproject.toml)
-pylint==4.0.3             # via aoc (pyproject.toml)
+pylint==4.0.4             # via aoc (pyproject.toml)
 pytest==9.0.1             # via aoc (pyproject.toml)
 snakeviz==2.2.2           # via aoc (pyproject.toml)
 tomlkit==0.13.3           # via pylint
