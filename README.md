@@ -1,6 +1,6 @@
-# [Advent of code 2025](https://adventofcode.com/2025/)
+# [Advent of code](https://adventofcode.com/)
 
-Solutions for the [Advent of Code 2025](https://adventofcode.com/2025/) puzzles.
+Solutions for the [Advent of Code](https://adventofcode.com/) puzzles.
 
 Code is formatted using [ruff](https://pypi.org/project/ruff/). In some code *ruff* is temporarily disabled using `# fmt: off` and `# fmt: on`.
 
@@ -16,6 +16,7 @@ Code is spell checked using the [Code Spell Checker](https://marketplace.visuals
 
 - [Day 1: Secret Entrance](./2025/src/aoc2025_day01_secret_entrance.py)
 - [Day 2: Gift Shop](./2025/src/aoc2025_day02_gift_shop.py)
+- [Day 3: Lobby](./2025/src/aoc2025_day03_lobby.py)
 
 ## Profiling
 
