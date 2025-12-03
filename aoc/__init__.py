@@ -3,8 +3,6 @@
 import traceback
 from pathlib import Path
 
-type PuzzleInputType = list[str]
-
 
 class InputFileNotFoundException(Exception):
     """Input file not found"""
@@ -34,16 +32,16 @@ def get_puzzle_input_filename() -> Path:
     raise InputFileNotFoundException("could not find name of puzzle input file")
 
 
-def puzzle_input_as_list(ignore_empty_lines: bool = True) -> PuzzleInputType:
+def puzzle_input_as_list(ignore_empty_lines: bool = True) -> list[str]:
     """Read puzzle input file (optionally) suppress empty lines and return as list.
 
     Args:
         ignore_empty_lines (bool, optional): suppress empty lines (default: True).
 
     Yields:
-        Generator[str]: line of the puzzle input file
+        list[str]: list of puzzle input file lines
     """
-    puzzle_input = []
+    puzzle_input: list[str] = []
     with open(get_puzzle_input_filename(), encoding="utf-8") as fh_in:
         for line in fh_in:
             line = line.strip()

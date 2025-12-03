@@ -5,7 +5,7 @@ from dataclasses import dataclass
 
 import pytest
 
-from aoc import PuzzleInputType, puzzle_input_as_list
+from aoc import puzzle_input_as_list
 
 START_POSITION = 50
 DIAL_SIZE = 100
@@ -68,14 +68,14 @@ EXAMPLES_PART_2 = [
 ]
 
 
-def parse_rotation(rotation):
+def parse_rotation(rotation: str) -> int:
     direction, clicks = rotation[0], int(rotation[1:])
     if direction == "L":
         return -clicks
     return clicks
 
 
-def part_1(rotations: PuzzleInputType) -> int:
+def part_1(rotations: list[str]) -> int:
     position = START_POSITION
     times_landed_on_zero = 0
     for rotation in rotations:
@@ -91,7 +91,7 @@ def test_part_1(example: Example) -> None:
     assert part_1(example.rotations) == example.answer
 
 
-def part_2(rotations: PuzzleInputType) -> int:
+def part_2(rotations: list[str]) -> int:
     position = START_POSITION
     landing_on_or_passing_zero = 0
     for rotation in rotations:
