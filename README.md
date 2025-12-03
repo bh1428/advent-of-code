@@ -15,6 +15,7 @@ Code is spell checked using the [Code Spell Checker](https://marketplace.visuals
 ## 2025
 
 - [Day 1: Secret Entrance](./2025/src/aoc2025_day01_secret_entrance.py)
+- [Day 2: Gift Shop](./2025/src/aoc2025_day02_gift_shop.py)
 
 ## Profiling
 

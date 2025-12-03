@@ -14,7 +14,7 @@ DIAL_SIZE = 100
 @dataclass
 class Example:
     rotations: list[str]
-    answer: int
+    times_zero: int
 
 
 EXAMPLES_PART_1 = [
@@ -88,7 +88,7 @@ def part_1(rotations: list[str]) -> int:
 
 @pytest.mark.parametrize("example", EXAMPLES_PART_1)
 def test_part_1(example: Example) -> None:
-    assert part_1(example.rotations) == example.answer
+    assert part_1(example.rotations) == example.times_zero
 
 
 def part_2(rotations: list[str]) -> int:
@@ -109,7 +109,7 @@ def part_2(rotations: list[str]) -> int:
 
 @pytest.mark.parametrize("example", EXAMPLES_PART_2)
 def test_part_2(example: Example) -> None:
-    assert part_2(example.rotations) == example.answer
+    assert part_2(example.rotations) == example.times_zero
 
 
 def main():

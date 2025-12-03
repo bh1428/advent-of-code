@@ -1,14 +1,19 @@
 """Advent of Code - utilities"""
 
+import pathlib
+import time
 import traceback
-from pathlib import Path
+from typing import Callable, ParamSpec, TypeVar
+
+P = ParamSpec("P")
+R = TypeVar("R")
 
 
 class InputFileNotFoundException(Exception):
     """Input file not found"""
 
 
-def get_puzzle_input_filename() -> Path:
+def get_puzzle_input_filename() -> pathlib.Path:
     """Generate a filename where the puzzle input is expected.
 
     The method searches for a name on the caller stack assuming:
@@ -22,9 +27,9 @@ def get_puzzle_input_filename() -> Path:
     Returns:
         Path: content puzzle input file
     """
-    aoc_base_dir = str(Path("__file__").resolve().parent)  # resolve() makes drive letter uppercase (on Windows)
+    aoc_base_dir = str(pathlib.Path("__file__").resolve().parent)  # resolve() makes drive letter uppercase (on Windows)
     for stack_frame in traceback.extract_stack():
-        filename = Path(stack_frame.filename).resolve()  # again resolve() for drive letter
+        filename = pathlib.Path(stack_frame.filename).resolve()  # again resolve() for drive letter
         if str(filename).startswith(aoc_base_dir):
             input_file = filename.parent.parent / "data" / filename.with_suffix(".txt").name
             if input_file.exists():
@@ -49,3 +54,25 @@ def puzzle_input_as_list(ignore_empty_lines: bool = True) -> list[str]:
                 continue
             puzzle_input.append(line)
     return puzzle_input
+
+
+def puzzle_input_as_str() -> str:
+    """Get the puzzle input as a string.
+
+    Returns:
+        str: content puzzle input file
+    """
+    return get_puzzle_input_filename().read_text(encoding="utf-8")
+
+
+def measure_duration(func: Callable[P, R]) -> Callable[P, R]:
+    """Decorator to measure the duration of a function call."""
+
+    def wrap_func(*args: P.args, **kwargs: P.kwargs) -> R:
+        t1 = time.perf_counter()
+        result = func(*args, **kwargs)
+        t2 = time.perf_counter()
+        print(f"{func.__name__}(): {(t2 - t1):.4f}s")
+        return result
+
+    return wrap_func
