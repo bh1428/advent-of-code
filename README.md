@@ -1,16 +1,17 @@
-# [Advent of code](https://adventofcode.com/)
+# [Advent of code][advent_of_code]
 
-Solutions for the [Advent of Code](https://adventofcode.com/) puzzles.
+Solutions for the [Advent of Code][advent_of_code] puzzles.
 
-Code is formatted using [ruff](https://pypi.org/project/ruff/). In some code *ruff* is temporarily disabled using `# fmt: off` and `# fmt: on`.
+Code is formatted using [ruff][ruff]. In some code *ruff* is temporarily disabled using `# fmt: off` and `# fmt: on`.
 
-Code is spell checked using the [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) ([CSpell](https://cspell.org/)). Where spelling errors are expected (i.e. puzzle input) its temporarily disabled using `# cSpell: disable` and `# cSpell: enable`.
+Code is spell checked using the [Code Spell Checker][vsc_code_spell_checker] ([CSpell][cspell]). Where spelling errors are expected (i.e. puzzle input) its temporarily disabled using `# cSpell: disable` and `# cSpell: enable`.
 
 - [2025](#2025)
-- [Profiling](#profiling)
+- [Performance optimization](#performance-optimization)
   - [`pyinstrument`](#pyinstrument)
   - [`line_profiler`](#line_profiler)
   - [cProfile](#cprofile)
+  - [`dis` module](#dis-module)
 
 ## 2025
 
@@ -18,17 +19,19 @@ Code is spell checked using the [Code Spell Checker](https://marketplace.visuals
 - [Day 2: Gift Shop](./2025/src/aoc2025_day02_gift_shop.py)
 - [Day 3: Lobby](./2025/src/aoc2025_day03_lobby.py)
 
-## Profiling
+## Performance optimization
 
-Use a profiler to find the slowest parts of your solution. Some available options are:
+You can use a profiler to find the slowest parts of your solution. Some available options are:
 
-1. [`pyinstrument`](https://pypi.org/project/pyinstrument/): focus on the slowest parts
-2. [`line_profiler`](https://pypi.org/project/line_profiler/): line-by-line profiling of functions
-3. [`cProfile`](https://docs.python.org/3/library/profile.html#module-cProfile): standard profiler included with Python
+1. [`pyinstrument`][pyinstrument]: focus on the slowest parts
+2. [`line_profiler`][line_profiler]: line-by-line profiling of functions
+3. [`cProfile`][cprofile]: standard profiler included with Python
+
+As an alternative, use the [`dis`][dis_module] module to disassemble a function to [bytecode][bytecode].
 
 ### `pyinstrument`
 
-The [`pyinstrument`](https://pypi.org/project/pyinstrument/) profiler focuses on the slowest parts of your code. Use it like this (open `report.html` for the results):
+The [`pyinstrument`][pyinstrument] profiler focuses on the slowest parts of your code. Use it like this (open `report.html` for the results):
 
 ```bash
 pyinstrument -o report.html -r html my_program.py
@@ -36,7 +39,7 @@ pyinstrument -o report.html -r html my_program.py
 
 ### `line_profiler`
 
-[`line_profiler`](https://pypi.org/project/line_profiler/) is a module for doing line-by-line profiling of functions. To profile a python script:
+[`line_profiler`][line_profiler] is a module for doing line-by-line profiling of functions. To profile a python script:
 
 - In the relevant file(s), `import line_profiler` and decorate function(s) you want to profile with `@line_profiler.profile`.
 - Set the environment variable `LINE_PROFILE=1` and run the script:
@@ -47,9 +50,51 @@ pyinstrument -o report.html -r html my_program.py
 
 ### cProfile
 
-[`cProfile`](https://docs.python.org/3/library/profile.html#module-cProfile) is a profiler included with Python. The profiler gives the total running time, tells the function call frequency and much more data. To visualize the data you can use [`snakeviz`](https://pypi.org/project/snakeviz/):
+[`cProfile`][cprofile] is a profiler included with Python. The profiler gives the total running time, tells the function call frequency and much more data. To visualize the data you can use [`snakeviz`][snakeviz]:
 
 ```bash
 python -m cProfile -o out.profile my_program.py arg1 arg2
 snakeviz out.profile
 ```
+
+### `dis` module
+
+The [`dis`][dis_module] module supports the analysis of CPython [bytecode][bytecode] by disassembling it. While it's typically not the first tool you would turn to, it becomes valuable when a profiler indicates that something is running slowly and you want to find out more details.
+
+Use it like this:
+
+```python
+import dis
+
+def some_function():
+    print("Hello World!")
+
+dis.dis(some_function)
+```
+
+Which will then print:
+
+```text
+  4           RESUME                   0
+
+  5           LOAD_GLOBAL              1 (print + NULL)
+              LOAD_CONST               1 ('Hello World!')
+              CALL                     1
+              POP_TOP
+              RETURN_CONST             0 (None)
+```
+
+Refer to the [Python Bytecode Instructions][python_bytecode_instructions] documentation when you really want to know what's happening. However, you will already get a good impression by simply scanning the disassembled bytecode.
+
+
+[advent_of_code]: https://adventofcode.com/
+[bytecode]: https://docs.python.org/3/glossary.html#term-bytecode
+[cprofile]: https://docs.python.org/3/library/profile.html#module-cProfile
+[cspell]: https://cspell.org/
+[dis_module]: https://docs.python.org/3/library/dis.html
+[line_profiler]: https://pypi.org/project/line_profiler/
+[pyinstrument]: https://pypi.org/project/pyinstrument/
+[ruff]: https://pypi.org/project/ruff/
+[snakeviz]: https://pypi.org/project/snakeviz/
+[vsc_code_spell_checker]: https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker
+[python_bytecode_instructions]: https://docs.python.org/3/library/dis.html#python-bytecode-instructions
