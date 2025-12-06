@@ -1,44 +1,64 @@
 """Advent of Code - utilities"""
 
-import pathlib
 import time
 import traceback
+from pathlib import Path
 from typing import Callable, ParamSpec, TypeVar
 
 P = ParamSpec("P")
 R = TypeVar("R")
+
+DEFAULT_DATA_DIR = "data"
 
 
 class InputFileNotFoundException(Exception):
     """Input file not found"""
 
 
-def get_puzzle_input_filename() -> pathlib.Path:
+def get_puzzle_input_filename(data_dir: str | Path | None = None) -> Path:
     """Generate a filename where the puzzle input is expected.
 
-    The method searches for a name on the caller stack assuming:
-     - calling script is in a subdir of the parent of this file
-     - input file is in the folder '../data' relative to calling script
-     - input file has the same (base)name as the caller but with extension '.txt'
+    The file to be found is based on the name of the caller script (which is
+    retrieved from the call stack). The puzzle input file must have the same
+    name as the caller (but with .txt extension) and be located in a folder
+    'data' below the project root folder. The folder structure below 'data'
+    must be comparable to the location of the caller script, e.g.:
+      project_root
+       ├─► aoc
+       │    └─► __init__.py        this file (__file__)
+       ├─► parent_caller
+       │    └─► caller.py          caller of this function
+       └─► data                    data folder root
+            └─► parent_caller      matches parent from caller
+                 └─► caller.txt    puzzle input file, e.g. caller with .txt
+
+    This example shows one level above the caller, but multiple levels are
+    supported as well.
+
+    Args:
+        data_dir (str | Path | None, optional): base name of the data
+            directory. Defaults to DEFAULT_DATA_DIR.
 
     Raises:
-        InputFileNotFoundException: when no existing file was found
+        InputFileNotFoundException: when no file was found
 
     Returns:
         Path: content puzzle input file
     """
-    aoc_base_dir = str(pathlib.Path("__file__").resolve().parent)  # resolve() makes drive letter uppercase (on Windows)
+    project_root = str(Path(__file__).resolve().parent.parent)
+    data_dir = str(data_dir) if data_dir is not None else DEFAULT_DATA_DIR
     for stack_frame in traceback.extract_stack():
-        filename = pathlib.Path(stack_frame.filename).resolve()  # again resolve() for drive letter
-        if str(filename).startswith(aoc_base_dir):
-            input_file = filename.parent.parent / "data" / filename.with_suffix(".txt").name
-            if input_file.exists():
-                return input_file
-    raise InputFileNotFoundException("could not find name of puzzle input file")
+        filename = str(Path(stack_frame.filename).resolve())
+        if filename.startswith(project_root):
+            file_in_subtree = Path(filename[len(project_root) + 1 :])
+            puzzle_input_file = Path(project_root) / data_dir / file_in_subtree.with_suffix(".txt")
+            if puzzle_input_file.exists():
+                return puzzle_input_file
+    raise InputFileNotFoundException("could not find puzzle input file")
 
 
 def puzzle_input_as_list(ignore_empty_lines: bool = True) -> list[str]:
-    """Read puzzle input file (optionally) suppress empty lines and return as list.
+    """Read puzzle input file, (optionally) suppress empty lines and return as list.
 
     Args:
         ignore_empty_lines (bool, optional): suppress empty lines (default: True).

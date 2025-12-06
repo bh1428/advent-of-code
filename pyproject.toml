@@ -1,14 +1,14 @@
 [project]
 name = "aoc"
 description = "Advent of code (https://adventofcode.com/) puzzles."
-version = "2025.12.4"
+version = "2025.12.6"
+license = "AGPL-3.0-or-later"
 authors = [
   { name="Ben Hattem", email="benghattem@gmail.com" },
 ]
 requires-python = "<3.14"
 classifiers = [
     "Development Status :: 1 - Planning",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Private :: Do Not Upload",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.13",
@@ -28,6 +28,9 @@ dev = [
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["aoc"]
 
 [tool.uv]
 link-mode = "copy"
