@@ -2,7 +2,7 @@
 """Advent of Code 2025 - Day 2: Gift Shop (https://adventofcode.com/2025/day/2)"""
 
 from dataclasses import dataclass
-from functools import lru_cache
+from functools import cache
 
 import pytest
 
@@ -100,7 +100,7 @@ def test_part_1(example: Example) -> None:
     assert part_1(example.ranges) == example.sum_invalid_ids
 
 
-@lru_cache
+@cache
 def lengths_to_be_checked(len_str: int) -> list[int]:
     return [i for i in range(1, len_str) if len_str % i == 0]
 
