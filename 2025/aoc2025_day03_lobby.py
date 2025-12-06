@@ -68,7 +68,7 @@ def part_2(banks: list[str], batteries_to_keep: int = 12) -> int:
         start = 0
         bank_joltage = ""
         batteries_to_find = batteries_to_keep
-        bank = f"{bank}0"  # avoid issue with bank[?:-0] (:-0 does not work)
+        bank = f"{bank}0"  # avoid issue with bank[?:-0] ([:-0] doesn't work)
         while batteries_to_find > 0:
             max_battery = max(bank[start:-batteries_to_find])
             position = bank[start:-batteries_to_find].find(max_battery) + start
