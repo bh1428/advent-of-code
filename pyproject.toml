@@ -1,11 +1,11 @@
 [project]
 name = "aoc"
 description = "Advent of code (https://adventofcode.com/) puzzles."
-version = "2025.12.1"
+version = "2025.12.4"
 authors = [
   { name="Ben Hattem", email="benghattem@gmail.com" },
 ]
-requires-python = "==3.13.9"
+requires-python = "<3.14"
 classifiers = [
     "Development Status :: 1 - Planning",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
