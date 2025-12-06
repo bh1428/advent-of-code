@@ -18,6 +18,7 @@ Code is spell checked using the [Code Spell Checker][vsc_code_spell_checker] ([C
 - [Day 1: Secret Entrance](./2025/src/aoc2025_day01_secret_entrance.py)
 - [Day 2: Gift Shop](./2025/src/aoc2025_day02_gift_shop.py)
 - [Day 3: Lobby](./2025/src/aoc2025_day03_lobby.py)
+- [Day 4: Printing Department](./2025/src/aoc2025_day04_printing_department.py)
 
 ## Performance optimization
 
