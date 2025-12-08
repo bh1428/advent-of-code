@@ -20,6 +20,7 @@ Code is spell checked using the [Code Spell Checker][vsc_code_spell_checker] ([C
 - [Day 3: Lobby][aoc2025_03]
 - [Day 4: Printing Department][aoc2025_04]
 - [Day 5: Cafeteria][aoc2025_05]
+- [Day 6: Trash Compactor][aoc2025_06]
 
 ## Performance optimization
 
@@ -94,6 +95,7 @@ Refer to the [Python Bytecode Instructions][python_bytecode_instructions] docume
 [aoc2025_03]: ./2025/aoc2025_day03_lobby.py
 [aoc2025_04]: ./2025/aoc2025_day04_printing_department.py
 [aoc2025_05]: ./2025/aoc2025_day05_cafeteria.py
+[aoc2025_06]: ./2025/aoc2025_day06_trash_compactor.py
 [bytecode]: https://docs.python.org/3/glossary.html#term-bytecode
 [cprofile]: https://docs.python.org/3/library/profile.html#module-cProfile
 [cspell]: https://cspell.org/
