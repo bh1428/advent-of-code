@@ -15,10 +15,11 @@ Code is spell checked using the [Code Spell Checker][vsc_code_spell_checker] ([C
 
 ## 2025
 
-- [Day 1: Secret Entrance](./2025/src/aoc2025_day01_secret_entrance.py)
-- [Day 2: Gift Shop](./2025/src/aoc2025_day02_gift_shop.py)
-- [Day 3: Lobby](./2025/src/aoc2025_day03_lobby.py)
-- [Day 4: Printing Department](./2025/src/aoc2025_day04_printing_department.py)
+- [Day 1: Secret Entrance][aoc2025_01]
+- [Day 2: Gift Shop][aoc2025_02]
+- [Day 3: Lobby][aoc2025_03]
+- [Day 4: Printing Department][aoc2025_04]
+- [Day 5: Cafeteria][aoc2025_05]
 
 ## Performance optimization
 
@@ -87,15 +88,19 @@ Which will then print:
 
 Refer to the [Python Bytecode Instructions][python_bytecode_instructions] documentation when you really want to know what's happening. However, you will already get a good impression by simply scanning the disassembled bytecode.
 
-
 [advent_of_code]: https://adventofcode.com/
+[aoc2025_01]: ./2025/aoc2025_day01_secret_entrance.py
+[aoc2025_02]: ./2025/aoc2025_day02_gift_shop.py
+[aoc2025_03]: ./2025/aoc2025_day03_lobby.py
+[aoc2025_04]: ./2025/aoc2025_day04_printing_department.py
+[aoc2025_05]: ./2025/aoc2025_day05_cafeteria.py
 [bytecode]: https://docs.python.org/3/glossary.html#term-bytecode
 [cprofile]: https://docs.python.org/3/library/profile.html#module-cProfile
 [cspell]: https://cspell.org/
 [dis_module]: https://docs.python.org/3/library/dis.html
 [line_profiler]: https://pypi.org/project/line_profiler/
 [pyinstrument]: https://pypi.org/project/pyinstrument/
+[python_bytecode_instructions]: https://docs.python.org/3/library/dis.html#python-bytecode-instructions
 [ruff]: https://pypi.org/project/ruff/
 [snakeviz]: https://pypi.org/project/snakeviz/
 [vsc_code_spell_checker]: https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker
-[python_bytecode_instructions]: https://docs.python.org/3/library/dis.html#python-bytecode-instructions
