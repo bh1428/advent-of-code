@@ -88,5 +88,5 @@ def main():
 
 
 if __name__ == "__main__":
-    pytest.main(["-vv", "-s", __file__])
+    pytest.main(["-vv", __file__])
     main()

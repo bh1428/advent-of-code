@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Advent of Code 2025 - Day 6: Trash Compactor (https://adventofcode.com/2025/day/6)"""
 
-import functools
+import math
 from dataclasses import dataclass
-from operator import mul
 from typing import Callable, Iterable
 
 import pytest
@@ -29,13 +28,9 @@ EXAMPLES_PART_1 = [Example(WORKSHEET, 4277556)]
 EXAMPLES_PART_2 = [Example(WORKSHEET, 3263827)]
 
 
-def multiply(numbers: Iterable[int]) -> int:
-    return functools.reduce(mul, numbers)
-
-
 OPERATIONS: dict[str, Callable[[Iterable[int]], int]] = {
     "+": sum,
-    "*": multiply,
+    "*": math.prod,
 }
 
 
