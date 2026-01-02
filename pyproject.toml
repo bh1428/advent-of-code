@@ -1,28 +1,28 @@
 [project]
 name = "aoc"
 description = "Advent of code (https://adventofcode.com/) puzzles."
-version = "2025.12.6"
+version = "2026.1.2"
 license = "AGPL-3.0-or-later"
 authors = [
   { name="Ben Hattem", email="benghattem@gmail.com" },
 ]
-requires-python = "<3.14"
+requires-python = "==3.13.11"
 classifiers = [
-    "Development Status :: 1 - Planning",
-    "Private :: Do Not Upload",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.13",
+  "Development Status :: 1 - Planning",
+  "Private :: Do Not Upload",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
+  "pytest",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "line_profiler",
-    "pyinstrument",
-    "pylint",
-    "pytest",
-    "snakeviz",
+  "line_profiler",
+  "pyinstrument",
+  "pylint",
+  "snakeviz",
 ]
 
 [build-system]
@@ -46,8 +46,8 @@ indent-width = 4
 [tool.pylint.messages_control]
 max-line-length = 120
 disable = [
-    "missing-class-docstring",
-    "missing-function-docstring",
+  "missing-class-docstring",
+  "missing-function-docstring",
 ]
 
 [tool.pylint.typecheck]
